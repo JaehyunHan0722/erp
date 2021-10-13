@@ -42,7 +42,17 @@
 						//조회한 json데이터(ArrayList<BoardVO>) 갯수만큼 출력
 						//Ajax는 데이터만 가져오기 때문에 뷰에 연결하는 작업을 success인 경우 실행할 함수에서 처리한다.
 						for(i=0; i<data.length; i++){
-							mydata = mydata + data[i].title+", "+data[i].write_date;	
+							//mydata = mydata + data[i].title+", "+data[i].write_date;
+							//Ajax의 실행결과로 만들어진 뷰를 - 동적으로 만들어진 뷰
+							mydata = mydata+"<tr>"+
+								"<td class='boardContent' style=''><span id='test"+i+"'>"+data[i].title+"</span></td>"+
+								"<td class='boardDate' style=''>"+data[i].write_date+"</td>"+
+								"<tr/>"
+							//동적으로 만들어진 뷰에 이벤트를 연결
+							//$(document).on("이벤트명", "이벤트를 연결할 객체", "이벤트가 발생하면 실행할 함수")
+							$(document).on("click", "#test"+i, function(){
+								alert("이벤트 연결 성공");
+							})
 						}
 						//alert(mydata);
 						//데이터 전송이 성공하면 어떤 방법으로 뷰를 만들 것인지

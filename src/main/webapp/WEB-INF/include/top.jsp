@@ -63,7 +63,7 @@
 	<div class="container-fluid">
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/erp/menu/board_menu.do">Home</a></li>
+					<li class="active"><a href="index.do">Home</a></li>
 					<li><a href="/erp/menu/insa.do">업무관리</a></li>
 					<li><a href="#">자원관리</a></li>
 					<li><a href="/erp/board/list.do?category=all">커뮤니티</a></li>

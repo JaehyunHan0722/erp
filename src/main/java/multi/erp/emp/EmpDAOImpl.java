@@ -35,4 +35,11 @@ public class EmpDAOImpl implements EmpDAO {
 		return result;
 	}
 
+	@Override
+	public boolean login(String id, String pass) {
+		boolean result = false;
+		EmpVO user = sqlSession.selectOne("erp.emp.login", id);
+		return result;
+	}
+	
 }

@@ -22,5 +22,8 @@
 	<definition name="login" extends="mainTemplate">
 	</definition>
 	
+	<definition name="login/ok" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/emp/mypage.jsp"/>
+	</definition>
 	
 </tiles-definitions>

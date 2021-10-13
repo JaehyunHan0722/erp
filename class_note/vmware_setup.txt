@@ -1,0 +1,5 @@
+클릭 후 Custom Setup에서 체크 두 개 다하기 (Enhanced Keyboard Driver)
+
+User Experience Settings에서 두개 다 해제
+
+Next 후 Install

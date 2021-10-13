@@ -64,4 +64,16 @@ public class EmpController {
 		}
 		return result;
 	}
+	
+	@RequestMapping("/emp/login.do")
+	public String login(String id, String pass) {
+		String result = "";
+		boolean state = service.login(id, pass);
+		if(state) {
+			result = "login/ok";
+		}else {
+			result = "redirect:/emp/login.do";
+		}
+		return result;
+	}
 }
