@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
- 
-  </script>
-<style>
+ <style>
 	/* Remove the navbar's default margin-bottom and rounded borders */
 	.navbar {
 		margin-bottom: 0;
 		border-radius: 0;	
+	}
+	body{
+		color: black;
 	}
 	/*  #toparea{
 		padding: 30px;
@@ -25,30 +25,36 @@
 		background-color: #edeef1
 	} */
 </style>
+
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%  
+	String id = (String)request.getAttribute("userId");
+	%>
 	<div style="height:90px" style="padding:10px">
 		<div id="toparea"  class="navbar navbar-inverse">
 			<a href="/erp/index.do" style="position:absolute;top:30px;font-size: 18pt; font-weight: bolder;text-decoration: none;padding-left: 10px">KimSaemERP</a>
 			<ul class="nav navbar-nav navbar-right" 
 			 style="position:relative ;top:20px" >
-			
-					<li style="margin-right: 20px;height: 70px">
-					<a href="/erp/emp/loginPage.do"><span class="glyphicon glyphicon-log-in">
+			 <% if(id.equals("jang")){ %>
+					<li style="margin-right: 20px;height: 70px">		
+						<a href="/erp/emp/loginPage.do"><span class="glyphicon glyphicon-log-in">
 							</span>Login</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-log-out"></span>
-								Logout</a></li>
-						<li><a href="/erp/emp/insertPage.do"><span class="glyphicon glyphicon-log-out"></span>
-								회원가입</a></li>
-					</ul>
-					
+					<li><a href="/erp/emp/insertPage.do"><span class="glyphicon glyphicon-log-out"></span>
+						회원가입</a></li>
+			<%} else{ %>
+					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span>
+						Logout</a></li>
 					<span  class="navbar-form pull-right" >	
-						<img  class="img-circle" style="width: 60px;height: 70px"
-									src="/erp/images/kimdong.jpg"  />
+					<img  class="img-circle" style="width: 60px;height: 70px"
+						src="/erp/images/kimdong.jpg"  />
 					</span>  
-		
+			<%} %>		
+			</ul>
+					
+					
+					
 			<form class="navbar-form pull-right" style="position:relative ;top:20px">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search">

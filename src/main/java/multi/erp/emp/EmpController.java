@@ -66,14 +66,16 @@ public class EmpController {
 	}
 	
 	@RequestMapping("/emp/login.do")
-	public String login(String id, String pass) {
-		String result = "";
+	public ModelAndView login(String id, String pass) {
+		ModelAndView mav = new ModelAndView();
 		boolean state = service.login(id, pass);
 		if(state) {
-			result = "login/ok";
+			mav.setViewName("login/ok");
+			mav.addObject("userId", id);
 		}else {
-			result = "redirect:/emp/login.do";
+			mav.setViewName("redirect:/emp/loginPage.do");
 		}
-		return result;
+		System.out.println("아이디는 "+id);
+		return mav;
 	}
 }
