@@ -21,7 +21,7 @@
 			
 			$(this).click(function(){
 				category = $(this).text(); // this가 선택한 <li>
-				alert("선택됨:"+category);
+				//alert("선택됨:"+category);
 				$("#boardCategory > li").removeAttr("class"); //id가 boardCategory인 컴포넌트의 하위 엘리먼트 li태그의 모든 class
 				$(this).attr("class","active"); //클릭하는 엘리먼트 선택
 				//ajax로 BoardController의 메소드를 호출
@@ -38,13 +38,21 @@
 					type:"get",
 					data:{"category":category},
 					success:function(data){
-						alert(data);
-					 	alert(data[0].title);
+						mydata = "";
+						//조회한 json데이터(ArrayList<BoardVO>) 갯수만큼 출력
+						//Ajax는 데이터만 가져오기 때문에 뷰에 연결하는 작업을 success인 경우 실행할 함수에서 처리한다.
+						for(i=0; i<data.length; i++){
+							mydata = mydata + data[i].title+", "+data[i].write_date;	
+						}
+						//alert(mydata);
 						//데이터 전송이 성공하면 어떤 방법으로 뷰를 만들 것인지
+						//결과를 테이블에 출력
+						$("#mydatalist").empty();
+						$("#mydatalist").append(mydata);
 					}
 				}) //end ajax
 			}) //end click
-		}) //end each
+		}) //end each                                                                                                                                                                                                                        
 	}); //end ready function
 </script>
 
@@ -110,13 +118,13 @@
 							<li><a href="#">경조사</a></li>
 						</ul>
 						<div id="boardMain" style="padding-top: 20px; padding-left: 10px">
-							<table>
+							<table id="mydatalist">
 								<% for(int i=0; i<size; i++){
-								BoardVO user = boardlist.get(i);	
-									%>
+								BoardVO board = boardlist.get(i);	
+								%>
 								<tr>
-									<td class="boardContent" style=""><%= user.getTitle() %></td>
-									<td class="boardDate" style=""><%= user.getWrite_date() %></td>
+									<td class="boardContent" style=""><%= board.getTitle() %></td>
+									<td class="boardDate" style=""><%= board.getWrite_date() %></td>
 								</tr>
 								<%} %>	
 							</table>
