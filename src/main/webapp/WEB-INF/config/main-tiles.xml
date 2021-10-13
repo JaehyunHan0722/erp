@@ -22,7 +22,7 @@
 	<definition name="login" extends="mainTemplate">
 	</definition>
 	
-	<definition name="login/ok" extends="mainTemplate">
+	<definition name="login/ok" extends="indexTemplate">
 		<put-attribute name="content" value="/WEB-INF/emp/mypage.jsp"/>
 	</definition>
 	

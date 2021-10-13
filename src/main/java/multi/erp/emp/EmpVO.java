@@ -1,24 +1,24 @@
 package multi.erp.emp;
-/*
- * 테이블에 레코드를 모델링한 클래스
- * 정해진 규칙이 있다.
- * 프레임워크 내부에서 사용
- * 	- public 클래스로 작성
- * 	- 멤버 변수는 private (테이블의 커럼)
- * 	- 기본 생성자 만들기
- * 	- 매개변수가 있는 생성자 만들기
- */
+
 public class EmpVO {
-	private String id;
+	private String id; 
 	private String pass;
 	private String name;
 	private String addr;
 	private int point;
 	private String deptno;
-	
+	private String img;
 	public EmpVO() {
-		
+		System.out.println("EmpVo의 기본생성자");
 	}
+
+	//login용
+	public EmpVO(String id, String pass) {
+		super();
+		this.id = id;
+		this.pass = pass;
+	}
+
 	//insert용
 	public EmpVO(String id, String pass, String name, String addr, String deptno) {
 		super();
@@ -27,8 +27,20 @@ public class EmpVO {
 		this.name = name;
 		this.addr = addr;
 		this.deptno = deptno;
+	
 	}
+
 	//select용
+	public EmpVO(String id, String pass, String name, String addr, int point, String deptno,String img) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.addr = addr;
+		this.point = point;
+		this.deptno = deptno;
+		this.img = img;
+	}
 	public EmpVO(String id, String pass, String name, String addr, int point, String deptno) {
 		super();
 		this.id = id;
@@ -38,23 +50,27 @@ public class EmpVO {
 		this.point = point;
 		this.deptno = deptno;
 	}
-	public EmpVO(String id, String addr) {
-		super();
-		this.id = id;
-		this.addr = addr;
-	}
+	
 	@Override
 	public String toString() {
 		return "MemberDTO [id=" + id + ", pass=" + pass + ", name=" + name + ", addr=" + addr + ", point=" + point
-				+ ", deptno=" + deptno + "]";
+				+ ", deptno=" + deptno + ", img=" + img +"]";
 	}
-	
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public String getId() {
-		System.out.println("getId===============");
+		System.out.println("getId++++++++++++++++");
 		return id;
 	}
 	public void setId(String id) {
-		System.out.println("setId===============");
+		System.out.println("setId++++++++++++++++++");
 		this.id = id;
 	}
 	public String getPass() {
@@ -87,5 +103,6 @@ public class EmpVO {
 	public void setDeptno(String deptno) {
 		this.deptno = deptno;
 	}
+	
 	
 }

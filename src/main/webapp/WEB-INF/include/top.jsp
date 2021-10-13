@@ -1,3 +1,4 @@
+<%@page import="multi.erp.emp.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,28 +31,33 @@
 </head>
 <body>
 	<%  
-	String id = (String)request.getAttribute("userId");
+	EmpVO user = (EmpVO)request.getAttribute("user");
 	%>
 	<div style="height:90px" style="padding:10px">
 		<div id="toparea"  class="navbar navbar-inverse">
 			<a href="/erp/index.do" style="position:absolute;top:30px;font-size: 18pt; font-weight: bolder;text-decoration: none;padding-left: 10px">KimSaemERP</a>
 			<ul class="nav navbar-nav navbar-right" 
 			 style="position:relative ;top:20px" >
-			 <% if(id.equals("jang")){ %>
+			 
+			 
+			 <% if(user == null){ %>
 					<li style="margin-right: 20px;height: 70px">		
 						<a href="/erp/emp/loginPage.do"><span class="glyphicon glyphicon-log-in">
 							</span>Login</a></li>
 					<li><a href="/erp/emp/insertPage.do"><span class="glyphicon glyphicon-log-out"></span>
 						회원가입</a></li>
+			
 			<%} else{ %>
 					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span>
 						Logout</a></li>
-					<span  class="navbar-form pull-right" >	
-					<img  class="img-circle" style="width: 60px;height: 70px"
-						src="/erp/images/kimdong.jpg"  />
-					</span>  
-			<%} %>		
-			</ul>
+					 
+					 
+			<%} %>	
+			</ul>	
+			<span  class="navbar-form pull-right" >	
+				<img  class="img-circle" style="width: 60px;height: 70px"
+					src="/erp/images/kimdong.jpg"  />
+			</span>
 					
 					
 					

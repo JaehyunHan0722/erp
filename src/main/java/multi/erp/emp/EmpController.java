@@ -24,7 +24,7 @@ public class EmpController {
 	@RequestMapping("/emp/list.do")
 	public ModelAndView getMemberList() {
 		ModelAndView mav = new ModelAndView();
-		List<EmpVO> userlist = service.getMemberlist();
+		List<EmpVO> userlist = service.getMemberList();
 		System.out.println("=============================");
 		System.out.println(userlist);
 		//tiles에 등록한 뷰의 이름
@@ -65,17 +65,16 @@ public class EmpController {
 		return result;
 	}
 	
-	@RequestMapping("/emp/login.do")
-	public ModelAndView login(String id, String pass) {
+	@RequestMapping(value="/emp/login.do", method=RequestMethod.POST)
+	public ModelAndView login(EmpVO user) {
 		ModelAndView mav = new ModelAndView();
-		boolean state = service.login(id, pass);
-		if(state) {
+		EmpVO state = service.login(user);
+		if(state != null) {
 			mav.setViewName("login/ok");
-			mav.addObject("userId", id);
+			mav.addObject("user", user);
 		}else {
 			mav.setViewName("redirect:/emp/loginPage.do");
 		}
-		System.out.println("아이디는 "+id);
 		return mav;
 	}
 }

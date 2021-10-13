@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface EmpService {
 	int insert(EmpVO user);
-	List<EmpVO> getMemberlist();
+	List<EmpVO> getMemberList();
 	boolean idCheck(String id);
-	boolean login(String id, String pass);
+	EmpVO login(EmpVO loginUser);
 }
