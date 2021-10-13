@@ -1,9 +1,11 @@
 - Ajax로 요청한 데이터를 정리해서 출력 / 마무리
 - 빅데이터 플랫폼 구축
 	1) VMWare설치
-	2) CentOS 설치
- 	3) 머신 4대 설치
-	4) 클러스터링
+	2) 네트워크를 위한 설정 파일 복사
+		(vmnetcfg.exe - player버전과 vmnetcfg.exe를 copy한 workstation pro버전이 동일해야 한다.)
+	3) CentOS 설치
+ 	4) 머신 4대 설치
+	5) 클러스터링
 		- 네트워크 구성
      - login처리
 [빅데이터]

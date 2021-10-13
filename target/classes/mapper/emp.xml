@@ -12,7 +12,4 @@
   	<select id="check" resultType="emp" parameterType="String">
   		select * from member where id = #{id}
   	</select>
-  	<select id="login" resultType="emp" parameterType="String">
-  		select * from member where id = #{id} and pass = #{pass}
-  	</select>
   </mapper>
