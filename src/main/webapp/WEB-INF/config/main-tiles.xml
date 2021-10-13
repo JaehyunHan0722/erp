@@ -22,7 +22,8 @@
 	<definition name="login" extends="mainTemplate">
 	</definition>
 	
-	<definition name="login/ok" extends="indexTemplate">
+	<definition name="login/ok" extends="mainTemplate">
+		<put-attribute name="menu" value="/WEB-INF/menu/insa_menu.jsp"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/emp/mypage.jsp"/>
 	</definition>
 	
