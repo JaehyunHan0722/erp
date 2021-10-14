@@ -1,0 +1,66 @@
+- Ajax로 요청한 데이터를 정리해서 출력 / 마무리
+- 빅데이터 플랫폼 구축
+	1) VMWare설치
+	2) 네트워크를 위한 설정 파일 복사
+		(vmnetcfg.exe - player버전과 vmnetcfg.exe를 copy한 workstation pro버전이 동일해야 한다.)
+	3) CentOS 설치
+		언어 설정 / 키보드 영어 추가 / 소프트웨어 - 개발 및 창조를 위한 워크스테이션 / 
+		설치 대상 - 표준 지역 디스크 두번 클릭 - 파티션 직접 설정 - 다음 - swap추가해서 2g - / 로 추가하면 나머지 18g 자동 설정 / 
+		Root 암호 - bigdata 로 설정 /
+		유저 만들기 - 전부 hadoop으로 설정 - 관리자로 만들기 체크 안함
+21.10.14 수정//
+ 	4) 머신 복제 - 반드시 Power off 한 이후에 복사+붙여넣기 할 것
+	5) 하둡 머신 클러스터링
+		- 4대를 연결(주로 머신1에서 ssh통신을 이용해서 원격으로 접속해서 작업)
+		  ssh ip주소 
+		  ssh(Secure Shell): 텔넷과 비슷한 개념 / 서버와 클라이언트간의 텍스트 기반으로 통신
+		- 4대를 식별하기 위해서 host명 변경
+		  hostnamectl set-hostname 변경하고 싶은 호스트명
+		- 방화벽 해제
+		  systemctl disable firewalld
+				---------
+				 방화벽 시스템
+			// 한번에 하기 - ssh ip주소 "systemctl disable firewalld"
+		- 도메인 등록 // ip로 접근하기 불편함
+		  ssh통신을 하기 위해 hadoop01에서 나머지 머신을 접근
+		  ip로 접근하기 불편하므로 호스트명을 등록해서 작업
+		  /ect/hosts 파일 수정
+			왼쪽 상단 - 위치 - 컴퓨터 - hosts 검색 - hosts파일 오른쪽 클릭하여 '텍스트 편집기로 열기 선택' - 내용 전부 지우고 'ip주소 이름' 4대 전부 입력
+			다시 터미널에서 /etc/init.d/network restart
+		// 원격지로 복사하기
+			scp /etc/hosts root@hadoop02:/etc/hosts
+
+		- su - hadoop // hadoop계정으로 이동함
+			[root@hadoop01 ~]$ : 하둡계정
+		- su - //관리자 root 계정으로 이동
+			[root@hadoop01 ~]# : 하둡계정
+		- ~ : 해당 계정의 홈 디렉토리. 모든 계정은 자신만의 홈디렉토리를 갖는다.
+			- root계정: /root
+			- 나머지 계정: /home/계정명
+	hadoop설치
+	[프로그램 설치]
+		1) 자바 설치
+			- jdk설치
+		2) 하둡 설치
+			- 1.x
+			- 2.x
+			- 3.x
+		3) 하둡 설정
+		4) 하둡 프로그래밍
+			- hdfs
+			- mapreduce
+			- 고급 프로그래밍(Customizing)
+		5) 하둡에코시스템 설치 후 테스트
+			- flume
+			- sqoop
+			- hive
+			- pig
+			- mahout
+		6) R
+
+	hadoop EcoSystem(하둡과 연관된 프로그램 설치하고 사용)
+	: scoop, flume, hive, pig
+- 원하는 작업을 할 수 있도록 프로그래밍
+- 분석결과 활용(R, Mahout)
+                       --------- 
+		추천시스템

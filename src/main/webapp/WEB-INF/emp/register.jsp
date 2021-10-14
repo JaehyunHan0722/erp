@@ -57,7 +57,6 @@
 						<div id="legend">
 							<legend>아래 양식을 작성해주세요.</legend>
 						</div>
-						<%-- <jsp:include page="map.jsp"></jsp:include> --%>
 						<div class="form-group">
 							<!-- 부서코드 -->
 							<label class="control-label col-sm-2" for="orgcode">부서코드</label>
