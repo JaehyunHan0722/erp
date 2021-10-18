@@ -1,3 +1,4 @@
+<%@page import="multi.erp.board.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="true"%>
 
@@ -12,7 +13,12 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-
+	<%-- <% BoardVO board = (BoardVO)request.getAttribute("board"); %> --%>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#category").val("${board.category}").attr("selected", "selected");
+		});
+	</script>
 </head>
 <body>
 
@@ -25,7 +31,7 @@
 			<div class="col-md-2 text-right">
 				<label for="id" class="control-label">번호</label>
 			</div>
-			<div class="col-md-8"></div>
+			<div class="col-md-8">${board.board_no}</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
@@ -44,19 +50,19 @@
 			<div class="col-md-2 text-right">
 				<label for="id" class="control-label">작성자</label>
 			</div>
-			<div class="col-md-8"></div>
+			<div class="col-md-8">${board.id}</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="title" class="control-label">제목</label>
 			</div>
-			<div class="col-md-8"></div>
+			<div class="col-md-8">${board.title}</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
 				<label for="title" class="control-label">작성날짜</label>
 			</div>
-			<div class="col-md-8"></div>
+			<div class="col-md-8">${board.write_date}</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">
@@ -64,15 +70,16 @@
 			</div>
 			<div class="col-md-8"
 				style="width: 500px; height: 400px; border: solid 1px;">
-				
+				${board.content}
 				</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-md-10 text-center">
-				<input type="submit" class="btn btn-lg btn-primary" 
-				value="수정">
-
+				<button type="button" class="btn btn-lg btn-primary"
+				onclick="location.href='/erp/board/read.do?board_no=1&state=UPDATE'"> 
+				수정
+				</button>
 				<button type="button" class="btn btn-danger btn-lg"
 					onclick="location.href='/erp/board/list.do'">
 					<i class="fa fa-fw fa-close"></i> 목록

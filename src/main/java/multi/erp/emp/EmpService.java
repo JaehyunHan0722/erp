@@ -7,4 +7,5 @@ public interface EmpService {
 	List<EmpVO> getMemberList();
 	boolean idCheck(String id);
 	EmpVO login(EmpVO loginUser);
+
 }

@@ -34,7 +34,7 @@
 						<div class="col-md-2 text-right">
 							<label for="id" class="control-label">번호</label>
 						</div>
-						<div class="col-md-8"></div>
+						<div class="col-md-8">${board.board_no}</div>
 					</div>
 					<input type="hidden" name="board_no" value="">
 					<div class="form-group">
@@ -54,14 +54,14 @@
 						<div class="col-sm-10">
 
 							<p class="form-control-static">
-								
+								${board.id}
 							</p>
 						</div>
 					
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">제목</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="title" value=""> <span
+								<input type="text" class="form-control" name="title" value="${board.title}"> <span
 									class="help-block">게시글 유형에 맞는 내용으로 작성 부탁드립니다. </span>
 							</div>
 						</div>
@@ -70,7 +70,7 @@
 							<div class="col-sm-8">
 								<textarea id="content"
 									style="width: 100%; border: 1; overflow: visible; text-overflow: ellipsis;"
-									rows=15 name="content"></textarea>
+									rows=15 name="content">${board.content}</textarea>
 
 							</div>
 						</div>

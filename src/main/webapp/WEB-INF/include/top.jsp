@@ -31,7 +31,7 @@
 </head>
 <body>
 	<%  
-	EmpVO user = (EmpVO)request.getAttribute("user");
+	EmpVO user = (EmpVO)session.getAttribute("loginOKUser");
 	%>
 	<div style="height:90px" style="padding:10px">
 		<div id="toparea"  class="navbar navbar-inverse">
@@ -41,24 +41,24 @@
 			 
 			 
 			 <% if(user == null){ %>
-					<li style="margin-right: 20px;height: 70px">		
-						<a href="/erp/emp/loginPage.do"><span class="glyphicon glyphicon-log-in">
-							</span>Login</a></li>
-					<li><a href="/erp/emp/insertPage.do"><span class="glyphicon glyphicon-log-out"></span>
-						회원가입</a></li>
-			
+				<li style="margin-right: 20px;height: 70px">		
+					<a href="/erp/emp/loginPage.do"><span class="glyphicon glyphicon-log-in">
+						</span>Login</a></li>
+				<li><a href="/erp/emp/insertPage.do"><span class="glyphicon glyphicon-log-out"></span>
+					회원가입</a></li>
+				</ul>
 			<%} else{ %>
-					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span>
-						Logout</a></li>
+				<li><a href="/erp/emp/logout.do"><span class="glyphicon glyphicon-log-out"></span>
+					Logout</a></li>
 					 
 					 
-			<%} %>	
+			
 			</ul>	
-			<span  class="navbar-form pull-right" >	
-				<img  class="img-circle" style="width: 60px;height: 70px"
-					src="/erp/images/kimdong.jpg"  />
-			</span>
-					
+				<span  class="navbar-form pull-right" >	
+					<img  class="img-circle" style="width: 60px;height: 70px"
+						src="/erp/images/kimdong.jpg"  />
+				</span>
+			<%} %>			
 					
 					
 			<form class="navbar-form pull-right" style="position:relative ;top:20px">
@@ -75,7 +75,7 @@
 	<div class="container-fluid">
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.do">Home</a></li>
+					<li class="active"><a href="/erp/index.do">Home</a></li>
 					<li><a href="/erp/menu/insa.do">업무관리</a></li>
 					<li><a href="#">자원관리</a></li>
 					<li><a href="/erp/board/list.do?category=all">커뮤니티</a></li>

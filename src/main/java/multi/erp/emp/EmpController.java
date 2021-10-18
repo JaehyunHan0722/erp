@@ -2,6 +2,9 @@ package multi.erp.emp;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,15 +69,34 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value="/emp/login.do", method=RequestMethod.POST)
-	public ModelAndView login(EmpVO user) {
+	public ModelAndView login(EmpVO user, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		EmpVO state = service.login(user);
-		if(state != null) {
-			mav.setViewName("login/ok");
-			mav.addObject("user", user);
+		EmpVO loginOKUser = service.login(user);
+		String viewName="";
+		if(loginOKUser != null) {
+			//로그인 성공
+			//HttpServletRequest에서 제공하는 getSession메소드를 이용해서 세션을 새롭게 만든다.
+			//세션은 클라이언트가 사용하는 공간을 서버에 저장하여 관리하며 각 클라이언트마다 세션의 아이디를 다르게 부여한다.
+			//세션을 만들고 response할때 response메세지에 session의 id를 저장할 수 있도록 셋팅한다.
+			//클라이언트에 response가 도착하면 세션 아이디를 쿠키로 클라이언트의 컴퓨터에 저장한다.
+			//새로운 요청을 할때 쿠키로 저장된 세션 id를 request에 저장하여 요청하며 세버에서는 request의 세션 id와 동일한 값이
+			//있는지 확인하고 동일한 값의 세션으로 접속할 수 있도록 한다.
+			HttpSession session = request.getSession();
+			//세션에 저장할 데이터를 setAttribute메소드를 이용해서 작업
+			session.setAttribute("loginOKUser", loginOKUser);
+			viewName = "login/ok";
 		}else {
-			mav.setViewName("redirect:/emp/loginPage.do");
+			viewName = "redirect:/emp/loginPage.do";
 		}
+		mav.setViewName(viewName);
 		return mav;
+	}
+	@RequestMapping("/emp/logout.do")
+	public String logout(HttpSession ses) throws Exception{
+		if(ses != null) {
+			//세션 객체가 있으면 세션 객체를 없애기
+			ses.invalidate();
+		}
+		return "redirect:/index.do";
 	}
 }

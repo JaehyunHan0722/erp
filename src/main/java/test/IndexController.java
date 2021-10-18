@@ -15,7 +15,7 @@ public class IndexController {
 	@Autowired
 	BoardService service;
 	
-	@RequestMapping("/userinfo/index.do")
+	@RequestMapping("/index.do")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("index");
 		List<BoardVO> boardlist = service.findByCategory("게시판");

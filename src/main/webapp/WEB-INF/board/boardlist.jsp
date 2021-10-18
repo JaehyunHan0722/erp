@@ -45,21 +45,21 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>카테고리</th>
-					<th>성명</th>
+					<th>번호</th>
 					<th>제목</th>
+					<th>성명</th>
 					<th>작성 날짜</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% for(int i=0; i<size; i++){
-					BoardVO user = boardlist.get(i);	
+					BoardVO board = boardlist.get(i);	
 				%>
 					<tr>
-						<td><%= user.getCategory() %></td>
-						<td><%= user.getId() %></td>
-						<td><%= user.getTitle() %></td>
-						<td><%= user.getWrite_date() %></td>
+						<td><%= board.getBoard_no() %></td>
+						<td><a href="/erp/board/read.do?board_no=<%= board.getBoard_no() %>&state=READ"><%= board.getTitle()%></a></td>
+						<td><%= board.getId() %></td>
+						<td><%= board.getWrite_date() %></td>
 					</tr>
 				<%} %>
 			</tbody>

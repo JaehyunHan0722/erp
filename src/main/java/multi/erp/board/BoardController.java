@@ -47,5 +47,28 @@ public class BoardController {
 		System.out.println("ajax통신: "+boardlist.size());
 		return boardlist;
 	}
-	
+	@RequestMapping(value="/board/read.do")
+	public ModelAndView read(String board_no, String state) {
+		System.out.println("readController=> "+board_no+", "+state);
+		ModelAndView mav = new ModelAndView();
+		BoardVO board = service.read(board_no);
+		String viewName = "";
+		if(state.equals("READ")) {
+			viewName = "board/read";
+		}else {
+			viewName = "board/update";
+		}
+		mav.setViewName(viewName);
+		mav.addObject("board", board);
+		return mav;
+	}
+	@RequestMapping("/board/search.do")
+	public ModelAndView search(String tag, String search) {
+		ModelAndView mav = new ModelAndView();
+		ArrayList<BoardVO> boardlist = (ArrayList<BoardVO>) service.searchList(tag,search);
+		mav.addObject("boardlist", boardlist);
+		mav.addObject("category", "all");
+		mav.setViewName("board/list");
+		return mav;
+	}
 }

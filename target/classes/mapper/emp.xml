@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="erp.emp">
  	 <insert id="insert" parameterType="emp">
- 	 	insert into member values(#{id},#{pass},#{name},#{addr},1000,#{deptno})
+ 	 	insert into member values(#{id},#{pass},#{name},#{addr},1000,#{deptno},#{img})
  	 </insert>
  	 <select id="list" resultType="emp">
  	 	select * from member
