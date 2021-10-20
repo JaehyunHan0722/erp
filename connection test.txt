@@ -1,1 +1,1 @@
-connection a b
+connection a b c
