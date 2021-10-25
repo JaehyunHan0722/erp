@@ -1,0 +1,6 @@
+1. /etc/hosts 파일 변경
+2. 모든 머신 copy
+3. /etc/init.d/network restart
+	=> 모든 머신
+4. /home/hadoop/hadoop-1.2.1/conf 의 core-site.xml, mapred-sited.xml, hdfs-site.xml파일 주소 변경 및 모든 머신 복사
+5. sts프로젝트 conf폴더의 모든 설정파일의 주소 변경
