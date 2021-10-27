@@ -1,0 +1,109 @@
+flume
+	=> 데이터수집을 위한 프로그램
+	     시스템로그, 파일, 웹서버로그, 클릭로그와 같은 비정형데이터를 HDFS에 적재할 수 있도록 지원하는 프로그램
+
+1. 구성요소
+	1) source: 데이터가 유입되는 지점 (어떤 방식으로 유입이 되는지 명시)
+		=> flume을 통해 전송할 데이터의 소스
+	2) channel => 최종목적지로 데이터를 보내기 위해 데이터를 보관하는 것
+		=> source와 sink사이의 Queue
+	3) sink: 데이터가 보내질 최종 목적지
+
+2. Source
+	1) avro
+	2) netcat - TCP로 수집 (telnet처럼 데이터 전송)
+	3) exec
+	4) spooldir
+	5) thirft
+	6) JMS
+
+3. sink
+	1) logger - 로그로 기록(콘솔)
+	2) avro
+	3) hdfs
+	4) hbase
+	5) elasticsearch
+	6) file
+	7) thrift
+
+4. channel
+	=> source와 sink를 연결
+	데이터를 버퍼링하는 컴포넌트
+	메모리, 파일, 데이터베이스
+
+5. flume 명령어
+	flume-ng agent --conf conf --conf-file 설정파일명 --name agent명
+		        ------------  -----------------------  ----------------
+			1		2		3
+	1) --conf: 설정파일이 있는 폴더명
+	2) --conf-file(-f): 설정파일명(경로를 정확하게 명시)
+	3) --name(-n): agent명 (myConsole)
+
+6. flume 테스트
+	1) telnet으로 입력받아서 로그로 출력하기
+	- flume을 실행하기
+	- 새로운 터미널에서 telnet을 실행한 후 작업하기
+	- telnet이 설치되어 있지 않으면 root계정으로 이동해서 설치하기
+		yum install telnet
+	- 만약에 telnet을 설치했는데 안되는 경우
+		yum install telnet-server (텔넷 서버 설치)
+		systemctl start telnet.socket (텔넷의 서버 서비스 시작)
+		systemctl status telnet.socket(상태확인 - active상태인지 23번 포트를 사용하는지 확인)
+
+	2) 폴더에 저장된 파일을 읽어서 폴더로 저장하기
+		input/output폴더 생성
+		설정파일 만들기
+		- source
+		폴더에 저장된 파일을 이동시킬 것이므로
+		[속성]
+		type: spoolDir
+			파일이 저장된 디렉토리
+			파일명으 보통 log파일이 저장된 경우 timestamp와 같은 식별자로 저장이 되도록 설정
+		- sink
+		다른 폴더의 파일로 저장
+		[속성]
+		type: file_roll
+		sink.directory: 저장할 디렉토리 위치
+		sink.rollInterval: 기본값 30, 30초마다 파일이 rolling된다.
+				0으로 지정하면 파일롤링이 일어나지 않아서 이벤트가 하나의 파일로 저장
+		- channel
+
+	3) 폴더에 저장된 파일을 읽어서 하둡의 HDFS에 저장하기
+		- source
+		spoolDir
+		- sink
+		[속성]
+		type: hdfs
+		hdfs.path=저장할 hdfs경로
+			 -----------------
+			hdfs://namenode정보/flume/output
+			        --------------- --------------
+				ㅣ              hdfs상의 path
+				 l
+			        namenode의 호스트명이나 주소 port 
+		hdfs.fileType=DataStream
+			      -----------
+			      문자열을 그대로 읽어서 저장하기 위해서
+		hdfs.writeFormat=text
+		callTimeout=15000
+			    ------
+			    대기시간
+		hdfs.batchSize: 한 번에 처리할 이벤트 수
+		hdfs.useLocalTimeStamp: true로 하면 현재 날짜를 변수처럼 사용할 수 있다.
+			hdfs://hadoop01:9000/tomcat/log/%Y/%m/%d
+
+	4) shell실행명령어를 이용해서 hdfs적재
+		1) source
+			[속성]
+			type=exec
+			shell=/bin/bash -c
+			command=shell명령어
+
+	5) WAS에서 hadoop의 namenode로 전송
+	머신 -> 머신
+	----      ----
+	was      namenode
+
+	- hadoop02에 was설치
+	- was에 웹프로젝트를 배포
+	- namenode로 전송
