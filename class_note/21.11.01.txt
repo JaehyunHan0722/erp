@@ -1,0 +1,13 @@
+[기본속성]
+	android:layout_width
+	android:layout_height
+		=> match_parent, wrap_content
+			dp => 1인치를 320개의 픽셀로 나누어 작업
+			1픽셀 = 1dpi
+	android:orientation
+		=> LinearLayout인 경우 속성을 추가하지 않으면 기본이 가로
+
+	padding, margin
+
+	android:layout_gravity: 레이아웃 안에서 위젯의 정렬
+	android:gravity: 내부 컨텐츠의 정렬
